@@ -32,5 +32,20 @@ let source2$ = from(allBooks);
 
 
 // combining two observables into one
-concat(source1$, source2$)
-  .subscribe(value => console.log(value));
+// concat(source1$, source2$)
+//   .subscribe(value => console.log(value));
+
+
+// Creating observables to handle events
+const button = document.getElementById('readersButton');
+
+fromEvent(button, 'click')
+  .subscribe(event => {
+    console.log(event);
+
+    let readersDiv = document.getElementById('readers');
+
+    for (let readers of allReaders) {
+      readersDiv.innerHTML += readers.name + '<br>';
+    }
+  });
