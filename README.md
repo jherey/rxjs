@@ -45,4 +45,14 @@ sourceObservable$.subscribe(
 );
 ```
 
+## Categories of Operators
+Operators simply operate or act on observables
+
+1. Transformation
+2. Filtering
+3. Combination
+4. Utility
+5. Conditional
+6. Aggregate
+7. Multicasting
 
