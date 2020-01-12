@@ -1,5 +1,5 @@
-import { Observable } from 'rxjs';
-import { allBooks } from './data';
+import { Observable, of, from, fromEvent, concat } from 'rxjs';
+import { allBooks, allReaders } from './data';
 
 let allBookObservabel$ = new Observable(subscriber => {
   // defines what will happen when the observable is executed
@@ -18,4 +18,19 @@ let allBookObservabel$ = new Observable(subscriber => {
   return () => console.log(`Executing teardown code`);
 });
 
-allBookObservabel$.subscribe(book => console.log(book.title));
+// allBookObservabel$.subscribe(book => console.log(book.title));
+
+
+// from and of allow you create an observable from data you already have
+let source1$ = of('hello', 10, true, allReaders[0].name);
+
+// source1$.subscribe(value => console.log(value));
+
+let source2$ = from(allBooks);
+
+// source2$.subscribe(book => console.log(book.title));
+
+
+// combining two observables into one
+concat(source1$, source2$)
+  .subscribe(value => console.log(value));
